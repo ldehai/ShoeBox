@@ -61,23 +61,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"ShoeBox"];
+    [self setTitle:@"FAVO"];
 
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     self.view.backgroundColor = [UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0];
     
-    //[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:248.0/255.0 green:248.0/255.0 blue:248.0/255.0 alpha:1.0]];
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0"))
-    {
-        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    }
-    else
-    {
-        [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
-    }
-  //  [UIApplication sharedApplication].statusBarStyle
-   // self.navigationController.navigationBar.translucent = NO;
-    
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self addNavigateButtons];
 
     CGSize size = [UIScreen mainScreen].bounds.size;
@@ -149,35 +138,35 @@
     
     [self loadPopMenu];
     
-    if (![[AppHelper sharedInstance] readPurchaseInfo]) {
-        //init iad banner
-        if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-            {
-                _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-            }
-            else
-            {
-                _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-            }
-        } else {
-            _bannerView = [[ADBannerView alloc] init];
-        }
-        _bannerView.delegate = self;
-        
-        CGRect bannerFrame = _bannerView.frame;
-        if (_bannerView.bannerLoaded) {
-            bannerFrame.origin.y = size.height-bannerFrame.size.height;
-        } else {
-            bannerFrame.origin.y = size.height;
-        }
-
-        [self.view addSubview:_bannerView];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(removeAds)
-                                                     name:kIAPTransactionSucceededNotification
-                                                   object:nil];
-    }
+//    if (![[AppHelper sharedInstance] readPurchaseInfo]) {
+//        //init iad banner
+//        if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+//            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+//            {
+//                _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+//            }
+//            else
+//            {
+//                _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+//            }
+//        } else {
+//            _bannerView = [[ADBannerView alloc] init];
+//        }
+//        _bannerView.delegate = self;
+//        
+//        CGRect bannerFrame = _bannerView.frame;
+//        if (_bannerView.bannerLoaded) {
+//            bannerFrame.origin.y = size.height-bannerFrame.size.height;
+//        } else {
+//            bannerFrame.origin.y = size.height;
+//        }
+//
+//        [self.view addSubview:_bannerView];
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(removeAds)
+//                                                     name:kIAPTransactionSucceededNotification
+//                                                   object:nil];
+//    }
     
   //  [self loadShoeStoreBanner];
 }
@@ -266,7 +255,7 @@
     
     int popWidth = 120;
     int btnHeight = 45;
-    int popHeight= (btnHeight+1)*6-1;
+    int popHeight= (btnHeight+1)*5-1;
     
     UIFont *font = [UIFont fontWithName:@"Avenir-Book" size:16.0];
 
@@ -274,7 +263,7 @@
     {
         popWidth = 170;
         btnHeight = 55;
-        popHeight= (btnHeight+1)*6-1;
+        popHeight= (btnHeight+1)*5-1;
         
         font = [UIFont fontWithName:@"Avenir-Book" size:20.0];
     }
@@ -286,7 +275,6 @@
 
     [self.view addSubview:popMenu];
 
-    
     UIButton *storebtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [storebtn setTitle:@"ShoeStore " forState:UIControlStateNormal];
     storebtn.titleLabel.font = font;
@@ -294,14 +282,14 @@
     storebtn.backgroundColor = [UIColor clearColor];
     [storebtn setFrame:CGRectMake(0, 0, popWidth, btnHeight)];
     [storebtn addTarget:self action:@selector(showstore) forControlEvents:UIControlEventTouchUpInside];
-    [popMenu addSubview:storebtn];
+//    [popMenu addSubview:storebtn];
 
     UIButton *allbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [allbtn setTitle:@"My Shoe " forState:UIControlStateNormal];
     allbtn.titleLabel.font = font;
     [allbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     allbtn.backgroundColor = [UIColor clearColor];
-    [allbtn setFrame:CGRectMake(0, btnHeight+1, popWidth, btnHeight)];
+    [allbtn setFrame:CGRectMake(0, 0, popWidth, btnHeight)];
     [allbtn addTarget:self action:@selector(showAll) forControlEvents:UIControlEventTouchUpInside];
     [popMenu addSubview:allbtn];
     
@@ -316,7 +304,7 @@
     [favbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [favbtn setImage:[UIImage imageNamed:@"LeftSideMenu_Favorite"] forState:UIControlStateNormal];
     favbtn.backgroundColor = [UIColor clearColor];
-    [favbtn setFrame:CGRectMake(0, (btnHeight+1)*2, popWidth, btnHeight)];
+    [favbtn setFrame:CGRectMake(0, btnHeight+1, popWidth, btnHeight)];
     [favbtn addTarget:self action:@selector(showFavorite) forControlEvents:UIControlEventTouchUpInside];
     [popMenu addSubview:favbtn];
     
@@ -331,7 +319,7 @@
     [archivebtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [archivebtn setImage:[UIImage imageNamed:@"LeftSideMenu_Archive"] forState:UIControlStateNormal];
     archivebtn.backgroundColor = [UIColor clearColor];
-    [archivebtn setFrame:CGRectMake(0, (btnHeight+1)*3, popWidth, btnHeight)];
+    [archivebtn setFrame:CGRectMake(0, (btnHeight+1)*2, popWidth, btnHeight)];
     [archivebtn addTarget:self action:@selector(showArchived) forControlEvents:UIControlEventTouchUpInside];
     [popMenu addSubview:archivebtn];
     
@@ -347,7 +335,7 @@
     [tagbtn setImage:[UIImage imageNamed:@"LeftSideMenu_Tag"] forState:UIControlStateNormal];
     [tagbtn setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     tagbtn.backgroundColor = [UIColor clearColor];
-    [tagbtn setFrame:CGRectMake(0, (btnHeight+1)*4, popWidth, btnHeight)];
+    [tagbtn setFrame:CGRectMake(0, (btnHeight+1)*3, popWidth, btnHeight)];
     [tagbtn addTarget:self action:@selector(showTag) forControlEvents:UIControlEventTouchUpInside];
     [popMenu addSubview:tagbtn];
     
@@ -367,7 +355,7 @@
     [setbtn setImage:[UIImage imageNamed:@"LeftSideMenu_Settings"] forState:UIControlStateNormal];
     [setbtn setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
     setbtn.backgroundColor = [UIColor clearColor];
-    [setbtn setFrame:CGRectMake(0, (btnHeight+1)*5, popWidth, btnHeight)];
+    [setbtn setFrame:CGRectMake(0, (btnHeight+1)*4, popWidth, btnHeight)];
     [setbtn addTarget:self action:@selector(openSetting:) forControlEvents:UIControlEventTouchUpInside];
     [popMenu addSubview:setbtn];
     popMenu.alpha = 0.0;
@@ -437,7 +425,7 @@
 
 - (void)showAll
 {
-    self.title = @"ShoeBox";
+    self.title = @"FAVO";
     currentFilter = @"all";
  
     [[AppHelper sharedInstance] loadshoeWithFilter:@"all"];
@@ -719,30 +707,31 @@
 
 - (void)deleteItems
 {
-    [self.gridView beginUpdates];
+//    [self.gridView beginUpdates];
     for (int i = 0; i< self.issuesArray.count; i++) {
         IssueViewController *issue = [self.issuesArray objectAtIndex:i];
         if (issue.bSelected) {
             [[AppHelper sharedInstance] deleteShoeWithTag:i];
-            NSIndexSet* set = [NSIndexSet indexSetWithIndex:i];
-            [self.gridView deleteItemsAtIndices:set withAnimation:AQGridViewItemAnimationFade];
+//            NSIndexSet* set = [NSIndexSet indexSetWithIndex:i];
+//            [self.gridView deleteItemsAtIndices:set withAnimation:AQGridViewItemAnimationFade];
             
             [self.issuesArray removeObject:issue];
             i--;
         }
     }
 
-    [self.gridView endUpdates];
+//    [self.gridView endUpdates];
+    [self.gridView reloadData];
     [self cancelAction:nil];
 
 }
 - (void)addNavigateButtons
 {
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"] style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
     
     [menuButton setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ItemActions_ReAdd"] style:UIBarButtonItemStylePlain target:self action:@selector(addNewShoes)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStylePlain target:self action:@selector(addNewShoes)];
     
     [addButton setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
@@ -791,7 +780,7 @@
 
 - (void)addNewShoes
 {
-    if([AppHelper sharedInstance].shoes.count < 6 || [[AppHelper sharedInstance] readPurchaseInfo])
+    if([AppHelper sharedInstance].shoes.count < 12 || [[AppHelper sharedInstance] readPurchaseInfo])
     {
 
         CGRect rect = [[UIScreen mainScreen] bounds];
@@ -859,12 +848,13 @@
     
     IssueViewController *view = [[IssueViewController alloc]initWithShoe:[[AppHelper sharedInstance].shoes objectAtIndex:0]];
     
-    [self.gridView beginUpdates];
+//    [self.gridView beginUpdates];
     [self.issuesArray insertObject:view atIndex:0];
     
-    NSIndexSet* set = [NSIndexSet indexSetWithIndex:0];
-    [self.gridView insertItemsAtIndices:set withAnimation:AQGridViewItemAnimationLeft];
-    [self.gridView endUpdates];
+//    NSIndexSet* set = [NSIndexSet indexSetWithIndex:0];
+//    [self.gridView insertItemsAtIndices:set withAnimation:AQGridViewItemAnimationLeft];
+//    [self.gridView endUpdates];
+    [self.gridView reloadData];
     
     ShoeInfo *sinfo = [[AppHelper sharedInstance].shoes objectAtIndex:0];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AppAddShoeSuccess" object:sinfo.name]; // -> Analytics Event
@@ -926,7 +916,7 @@
 - (IBAction)cancelAction:(id)sender
 {
     bEditMode = FALSE;
-    self.title = @"ShoeBox";
+    self.title = @"FAVO";
     //[self.add setHidden:NO];
     self.bottomToolBar.hidden = YES;
     [self addNavigateButtons];
@@ -934,7 +924,7 @@
     [IssueViewController setStatus:0];
     [[NSNotificationCenter defaultCenter] postNotificationName:ExitEditModeNotify object:self];
     
-    self.title = @"ShoeBox";
+    self.title = @"FAVO";
 }
 //删除完毕，恢复正常状态
 - (IBAction)commitEdit:(id)sender

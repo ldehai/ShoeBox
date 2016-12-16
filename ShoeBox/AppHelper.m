@@ -80,7 +80,7 @@ static AppHelper *instance = nil;
         //盒子照片名
         NSString *imageName  = [NSString stringWithFormat:@"%@-b.png",self.sid];
         NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@", imageName]];
-        UIImage *image = [self.capturedImages objectAtIndex:0];
+        UIImage *image = [self.capturedImages objectAtIndex:1];
         CGSize size = [[UIScreen mainScreen] bounds].size;
         
         CGSize scaledsize = CGSizeMake(size.width,size.height);
@@ -94,7 +94,7 @@ static AppHelper *instance = nil;
         //鞋子照片名
         imageName = [NSString stringWithFormat:@"%@-s.png",self.sid];
         pngPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@", imageName]];
-        image = [self.capturedImages objectAtIndex:1];
+        image = [self.capturedImages objectAtIndex:0];
  
         //CGSize size = [UIScreen mainScreen].bounds.size;
         

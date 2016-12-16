@@ -1314,38 +1314,38 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 
 - (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event
 {
-	_flags.ignoreTouchSelect = ([self isDragging] ? 1 : 0);
-
-	UITouch * touch = [touches anyObject];
-	_touchBeganPosition = [touch locationInView: nil];
-	if ( (touch != nil) && (_pendingSelectionIndex == NSNotFound) )
-	{
-		CGPoint pt = [touch locationInView: self];
-		UIView * hitView = [self _basicHitTest: pt withEvent: event];
-		_touchedContentView = hitView;
-
-		// unhighlight anything not here
-		if ( hitView != self )
-			[self highlightItemAtIndex: NSNotFound animated: NO scrollPosition: AQGridViewScrollPositionNone];
-
-		if ( [self _canSelectItemContainingHitView: hitView] )
-		{
-			NSUInteger index = [self indexForItemAtPoint: pt];
-			if ( index != NSNotFound )
-			{
-				if ( _flags.allowsSelection == 1 )
-				{
-					_pendingSelectionIndex = index;
-
-					// NB: In UITableView:
-					// if ( [self usesGestureRecognizers] && [self isDragging] ) skip next line
-					[self performSelector: @selector(_gridViewDeferredTouchesBegan:)
-							   withObject: [NSNumber numberWithUnsignedInteger: index]
-							   afterDelay: 0.0];
-				}
-			}
-		}
-	}
+//	_flags.ignoreTouchSelect = ([self isDragging] ? 1 : 0);
+//
+//	UITouch * touch = [touches anyObject];
+//	_touchBeganPosition = [touch locationInView: nil];
+//	if ( (touch != nil) && (_pendingSelectionIndex == NSNotFound) )
+//	{
+//		CGPoint pt = [touch locationInView: self];
+//		UIView * hitView = [self _basicHitTest: pt withEvent: event];
+//		_touchedContentView = hitView;
+//
+//		// unhighlight anything not here
+//		if ( hitView != self )
+//			[self highlightItemAtIndex: NSNotFound animated: NO scrollPosition: AQGridViewScrollPositionNone];
+//
+//		if ( [self _canSelectItemContainingHitView: hitView] )
+//		{
+//			NSUInteger index = [self indexForItemAtPoint: pt];
+//			if ( index != NSNotFound )
+//			{
+//				if ( _flags.allowsSelection == 1 )
+//				{
+//					_pendingSelectionIndex = index;
+//
+//					// NB: In UITableView:
+//					// if ( [self usesGestureRecognizers] && [self isDragging] ) skip next line
+//					[self performSelector: @selector(_gridViewDeferredTouchesBegan:)
+//							   withObject: [NSNumber numberWithUnsignedInteger: index]
+//							   afterDelay: 0.0];
+//				}
+//			}
+//		}
+//	}
 
 	[super touchesBegan: touches withEvent: event];
 }

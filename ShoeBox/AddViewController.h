@@ -19,13 +19,14 @@
 
 @property (nonatomic,strong) id<AddViewControllerDelegate> delegate;
 @property (nonatomic,strong) UIImagePickerController *uip;
-@property (nonatomic,strong) UIImageView *bottomimage;
+@property (nonatomic,strong) UIView *bottomView;
 @property (nonatomic,strong) UIImageView *rectimage;
 @property (nonatomic,strong) UIButton *boxbtn;
 @property (nonatomic,strong) UIButton *shoebtn;
 @property (nonatomic,strong) UIButton *capture;
 @property (nonatomic,strong) UIButton *cancelbtn;
 @property (nonatomic,strong) UILabel *lbcount;
+@property (nonatomic,strong) UILabel *cameraTip;
 @property (nonatomic,assign) int type;
 @property (nonatomic, strong) NSTimer *tickTimer;
 @property (strong) UISwipeGestureRecognizer * swipeRightRecognizer;

@@ -157,8 +157,9 @@ static int curStatus = 0;
 
     NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@-s.png", shoeInfo.sid]];
 
-    self.bigImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-60)];
-    self.bigImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.bigImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-30)];
+    self.bigImage.contentMode = UIViewContentModeScaleAspectFill;
+    self.bigImage.clipsToBounds = YES;
     [self.bigImage setImage:[UIImage imageWithContentsOfFile:pngPath]];
     [self.bgView addSubview:self.bigImage];
     
@@ -390,7 +391,8 @@ static int curStatus = 0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return CGSizeMake((screenRect.size.width-60)/ 3 , (screenRect.size.width-60) *1.5/ 3+20);
     } else {
-        return CGSizeMake((screenRect.size.width - 20)/2, (screenRect.size.width - 20) *1.5/2+60);
+        //return CGSizeMake((screenRect.size.width - 20)/2, (screenRect.size.width - 20) *1.5/2+60);
+        return CGSizeMake((screenRect.size.width - 20)/2, (screenRect.size.width - 20)/2);
     }
 }
 

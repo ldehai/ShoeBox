@@ -53,35 +53,43 @@
     [self.rectimage setFrame:CGRectMake(0, (size.height-size.width)/2, size.width, size.width)];
    // self.rectimage.center = self.view.center;
     
-    self.bottomimage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottombar"]];
-    [self.bottomimage setFrame:CGRectMake(0, size.height-55, size.width, 55)];
+    self.bottomView = [[UIView alloc] init];
+    [self.bottomView setFrame:CGRectMake(0, size.height-55, size.width, 70)];
+    [self.bottomView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.23]];
 
     self.boxbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.boxbtn setImage:[UIImage imageNamed:@"boxnormal"] forState:UIControlStateNormal];
-    [self.boxbtn setFrame:CGRectMake(size.width/2-50, size.height/2-25, 50, 40)];
+    [self.boxbtn setFrame:CGRectMake(size.width/2, size.height/2-25, 50, 40)];
     
     self.shoebtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shoebtn setImage:[UIImage imageNamed:@"shoenormal.png"] forState:UIControlStateNormal];
-    [self.shoebtn setFrame:CGRectMake(size.width/2, size.height/2-25, 50, 40)];
+    [self.shoebtn setFrame:CGRectMake(size.width/2-50, size.height/2-25, 50, 40)];
+    
+    self.cameraTip = [UILabel new];
+    self.cameraTip.backgroundColor = [UIColor clearColor];
+    self.cameraTip.textColor = [UIColor whiteColor];
+    self.cameraTip.text = @"STEP 1:\r\nCatch your favorite thing";
+    self.cameraTip.textAlignment = NSTextAlignmentCenter;
+    self.cameraTip.numberOfLines = 0;
+    [self.cameraTip setFrame:CGRectMake(0, size.height - 140, size.width, 60)];
     
     self.capture = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.capture setImage:[UIImage imageNamed:@"camera2.png"] forState:UIControlStateNormal];
+    [self.capture setImage:[UIImage imageNamed:@"camera"] forState:UIControlStateNormal];
     [self.capture.titleLabel setFont:[UIFont fontWithName:@"Vollkorn-Regular" size:14]];
     [self.capture addTarget:self action:@selector(captureButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.capture.frame = CGRectMake(size.width/2-20, size.height - 40.0, 40.0, 30.0);
+    self.capture.frame = CGRectMake(size.width/2-30, size.height - 65.0, 60.0, 60.0);
 
-    
     self.cancelbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.cancelbtn setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
+    [self.cancelbtn setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
     [self.cancelbtn.titleLabel setFont:[UIFont fontWithName:@"Vollkorn-Regular" size:14]];
     [self.cancelbtn setBackgroundColor:[UIColor clearColor]];
     [self.cancelbtn addTarget:self action:@selector(cancelButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.cancelbtn.frame = CGRectMake(size.width - 50, size.height - 40.0, 30.0, 30.0);
+    self.cancelbtn.frame = CGRectMake(size.width - 50, size.height - 50.0, 30.0, 30.0);
     
     //视图整体上移一个状态栏高度
-    self.view.frame = CGRectOffset(self.view.bounds, 0, -statusbarHeight);
+//    self.view.frame = CGRectOffset(self.view.bounds, 0, 70);
 
 }
 
@@ -117,8 +125,11 @@
     if (![self.shoebtn superview]) {
         [self.view addSubview:self.shoebtn];
     }
-    if (![self.bottomimage superview]) {
-        [self.view addSubview:self.bottomimage];
+    if (![self.bottomView superview]) {
+//        [self.view addSubview:self.bottomView];
+    }
+    if (![self.cameraTip superview]) {
+        [self.view addSubview:self.cameraTip];
     }
     if (![self.capture superview]) {
         [self.view addSubview:self.capture];
@@ -133,20 +144,6 @@
     static int stat = 0;
     if (self.type == 0)
     {
-        [self.shoebtn setImage:[UIImage imageNamed:@"shoenormal.png"] forState:UIControlStateNormal];
-        
-        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^(void) {
-            if (stat == 1)
-                [self.boxbtn setImage:[UIImage imageNamed:@"boxnormal.png"] forState:UIControlStateNormal];
-            else
-                [self.boxbtn setImage:[UIImage imageNamed:@"boxfocus.png"] forState:UIControlStateNormal];
-            stat = !stat;
-            
-        } completion:^(BOOL finished) {
-        }];
-    }
-    else
-    {
         [self.boxbtn setImage:[UIImage imageNamed:@"boxnormal.png"] forState:UIControlStateNormal];
         [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^(void) {
             
@@ -159,7 +156,20 @@
             
         } completion:^(BOOL finished) {
         }];
+    }
+    else
+    {
+        [self.shoebtn setImage:[UIImage imageNamed:@"shoenormal.png"] forState:UIControlStateNormal];
         
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^(void) {
+            if (stat == 1)
+                [self.boxbtn setImage:[UIImage imageNamed:@"boxnormal.png"] forState:UIControlStateNormal];
+            else
+                [self.boxbtn setImage:[UIImage imageNamed:@"boxfocus.png"] forState:UIControlStateNormal];
+            stat = !stat;
+            
+        } completion:^(BOOL finished) {
+        }];
     }
 }
 
@@ -210,6 +220,7 @@
     if (self.type == 0) {
         [self.boxbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.shoebtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        self.cameraTip.text = @"STEP 2:\r\nCatch position where you collect it";
     }
     if (self.type == 1) {
         [self clear];
@@ -236,9 +247,10 @@
 {
     [self.tickTimer invalidate];
     [self.uip.view removeFromSuperview];
-    [self.bottomimage removeFromSuperview];
+    [self.bottomView removeFromSuperview];
     [self.boxbtn removeFromSuperview];
     [self.shoebtn removeFromSuperview];
+    [self.cameraTip removeFromSuperview];
     [self.capture removeFromSuperview];
     [self.cancelbtn removeFromSuperview];
 }
