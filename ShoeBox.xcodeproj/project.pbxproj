@@ -622,6 +622,8 @@
 		A1DC2D8C1E0388E1000C9F80 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = myshoe/Images.xcassets; sourceTree = "<group>"; };
 		A1DC2D8E1E03962C000C9F80 /* icon_iphone_60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_iphone_60@2x.png"; sourceTree = "<group>"; };
 		A1DC2D8F1E03962C000C9F80 /* icon_iphone_60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_iphone_60@3x.png"; sourceTree = "<group>"; };
+		A1DC2D941E03F3A9000C9F80 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		A1DC2D951E03F3A9000C9F80 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		A1DD374C1802A45800413CC5 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyViewController.h; sourceTree = "<group>"; };
 		A1DD374D1802A45800413CC5 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyViewController.m; sourceTree = "<group>"; };
 		A1DD374E1802A45800413CC5 /* BuyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyViewController.xib; sourceTree = "<group>"; };
@@ -691,6 +693,8 @@
 		A10206B5187045DF00DEC620 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				A1DC2D941E03F3A9000C9F80 /* MBProgressHUD+MJ.h */,
+				A1DC2D951E03F3A9000C9F80 /* MBProgressHUD+MJ.m */,
 				A171303A1770C51600DCE14F /* MBProgressHUD.h */,
 				A171303B1770C51600DCE14F /* MBProgressHUD.m */,
 				A17130431771445C00DCE14F /* EGOTableViewPullRefresh */,

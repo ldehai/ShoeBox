@@ -68,7 +68,7 @@
     self.cameraTip = [UILabel new];
     self.cameraTip.backgroundColor = [UIColor clearColor];
     self.cameraTip.textColor = [UIColor whiteColor];
-    self.cameraTip.text = @"STEP 1:\r\nCatch your favorite thing";
+    self.cameraTip.text = @"STEP 1\r\nCatch your favorite thing";
     self.cameraTip.textAlignment = NSTextAlignmentCenter;
     self.cameraTip.numberOfLines = 0;
     [self.cameraTip setFrame:CGRectMake(0, size.height - 140, size.width, 60)];
@@ -220,7 +220,7 @@
     if (self.type == 0) {
         [self.boxbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.shoebtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        self.cameraTip.text = @"STEP 2:\r\nCatch position where you collect it";
+        self.cameraTip.text = @"STEP 2\r\nCatch position where you collect it";
     }
     if (self.type == 1) {
         [self clear];

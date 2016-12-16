@@ -74,6 +74,7 @@ typedef struct {
 + (CGSize)getIssueCellSize;
 + (void)setStatus:(int)status;
 + (int)selectedCount;
++ (void)clearSelectCount;
 @end
 
 #ifdef BAKER_NEWSSTAND

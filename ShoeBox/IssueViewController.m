@@ -371,9 +371,9 @@ static int curStatus = 0;
 - (void)setFavorite
 {
     self.favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.favBtn.frame = CGRectMake(self.view.frame.size.width-36, self.view.frame.size.height-96, 36, 36);
+    self.favBtn.frame = CGRectMake(self.view.frame.size.width-36, self.view.frame.size.height-66, 36, 36);
     self.favBtn.backgroundColor = [UIColor clearColor];
-    [self.favBtn setImage:[UIImage imageNamed:@"favorite-star"] forState:UIControlStateNormal];
+    [self.favBtn setImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
     [self.view addSubview:self.favBtn];
 }
 
@@ -406,4 +406,7 @@ static int curStatus = 0;
     return selectedCount;
 }
 
++ (void)clearSelectCount{
+    selectedCount = 0;
+}
 @end

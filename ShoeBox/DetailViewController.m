@@ -15,6 +15,8 @@
 #import "TagViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "ShareViewController.h"
+#import "MBProgressHUD+MJ.h"
+#import "SVProgressHUD.h"
 
 @interface DetailViewController ()<MFMailComposeViewControllerDelegate>
 {
@@ -24,11 +26,83 @@
 }
 @property (strong, nonatomic) UIPopoverController *activityPopover;
 @property (strong, nonatomic) UIBarButtonItem *shareButton;
+@property (nonatomic, strong) UIImageView *fullImageView; // 全屏展示的视图
+@property (nonatomic, assign) CGRect originFrame; // 存储每次要展示的图片frame, 方便缩小时使用
+
 @end
 
 @implementation DetailViewController
 
 #define NORMAL_CELL_HEIGHT 40
+
+// 懒加载全屏视图
+- (UIImageView *)fullImageView
+{
+    if (_fullImageView == nil) {
+        
+        // 视图和屏幕一样大
+        _fullImageView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        
+        // 设置为可交互, 不然, 后面的手势根本不能用
+        _fullImageView.userInteractionEnabled = YES;
+        
+        // 添加点击手势 ( 缩小图片时使用 )
+        [_fullImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap2:)]];
+        
+        // 设置视图内容填充模式.
+        _fullImageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+    }
+    return _fullImageView;
+}
+
+/**
+ *  图片放大
+ */
+-(void)actionTap:(UITapGestureRecognizer *)sender{
+    // 根据点击手势的坐标,获取被点击的cell
+    UIImageView *imageView = (UIImageView*)sender.view;
+    
+    // 转换坐标系
+    // 转换cell中的imageView的frame  在self.view中的坐标系
+    CGRect newFrame = [imageView convertRect:imageView.bounds toView:self.view];
+    
+    // 保存被点击的图片的frame, 缩小时使用
+    self.originFrame = newFrame;
+    
+    //    if (![self.fullImageView superview]) { // 貌似没用, 检查是否有父视图
+    
+    // 设置全屏视图中的图片
+    self.fullImageView.image = imageView.image;
+    
+    // 设置frame起始位置(动画开始位置)
+    self.fullImageView.frame = self.originFrame;
+    
+    // 设置背景颜色
+    self.fullImageView.backgroundColor = [UIColor blackColor];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self.fullImageView];
+    // 添加到视图上面
+    //    [self.view addSubview:self.fullImageView];
+    
+    // 动画效果展示为全屏
+    [UIView animateWithDuration:0.3 animations:^{
+        self.fullImageView.frame = [UIScreen mainScreen].bounds;
+    }];
+}
+
+/**
+ *  图片缩小
+ */
+-(void)actionTap2:(UITapGestureRecognizer *)sender{
+    // 缩小图片动画
+    [UIView animateWithDuration:0.3 animations:^{
+        self.fullImageView.backgroundColor = [UIColor clearColor];
+        self.fullImageView.frame = self.originFrame; // 动画缩小到初始位置
+    } completion:^(BOOL finished) {
+        [self.fullImageView removeFromSuperview];// 从父视图中移除全屏视图
+    }];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -97,19 +171,28 @@
 
     
     CGSize size = [[UIScreen mainScreen] bounds].size;
-    CGRect sectionFrame = CGRectMake(0.0, 0.0, size.width,  size.width*0.65);
+    CGRect sectionFrame = CGRectMake(0.0, 0.0, size.width,  size.width/2*1.5 + 30);
     sectionView = [[UIView alloc] initWithFrame:sectionFrame];
     sectionView.backgroundColor = [UIColor clearColor];
     
-    CGRect bigImageRect = CGRectMake(0.0, 10, size.width/2+20,  size.width/2+20);
+    CGRect bigImageRect = CGRectMake(0.0, 10, size.width/2,  size.width/2*1.5);
     self.bigImage = [[UIImageView alloc]initWithFrame:bigImageRect];
-    self.bigImage.contentMode = UIViewContentModeScaleAspectFit;
-    [self.bigImage setImage:[UIImage imageWithContentsOfFile:[AppHelper sharedInstance].sinfo.boxpng]];
+    self.bigImage.contentMode = UIViewContentModeScaleAspectFill;
+    self.bigImage.clipsToBounds = YES;
+    [self.bigImage setImage:[UIImage imageWithContentsOfFile:[AppHelper sharedInstance].sinfo.shoepng]];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(actionTap:)];
+    [self.bigImage addGestureRecognizer:tap];
+    [self.bigImage setUserInteractionEnabled:YES];
     
     //self.smallImage = [[UIImageView alloc]initWithFrame:CGRectMake(size.width*2/3, size.width*2/3, size.width/3,  size.width/3)];
-    self.smallImage = [[UIImageView alloc]initWithFrame:CGRectMake(size.width/2-20,10,size.width/2+20,size.width/2+20)];
-    self.smallImage.contentMode = UIViewContentModeScaleAspectFit;
-    [self.smallImage setImage:[UIImage imageWithContentsOfFile:[AppHelper sharedInstance].sinfo.shoepng]];
+    self.smallImage = [[UIImageView alloc]initWithFrame:CGRectMake(size.width/2,10,size.width/2,size.width/2*1.5)];
+    self.smallImage.contentMode = UIViewContentModeScaleAspectFill;
+    self.smallImage.clipsToBounds = YES;
+    [self.smallImage setImage:[UIImage imageWithContentsOfFile:[AppHelper sharedInstance].sinfo.boxpng]];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(actionTap:)];
+    [self.smallImage addGestureRecognizer:tap2];
+    [self.smallImage setUserInteractionEnabled:YES];
+
     [sectionView addSubview:self.bigImage];
     [sectionView addSubview:self.smallImage];
     [self updateTags:[AppHelper sharedInstance].sinfo.tags];
@@ -157,9 +240,14 @@
     [self.gridView reloadData];
     
     [self loadMenuBar];
-    
-
 }
+
+//- (void)previewImage:(UITapGestureRecognizer *)tap{
+//    UIImageView *imageView = (UIImageView*)tap.view;
+//    ImageViewController *preview = [ImageViewController new];
+//    preview.imageView = imageView;
+//    [self presentViewController:preview animated:YES completion:nil];
+//}
 
 - (void)loadMenuBar
 {
@@ -239,24 +327,28 @@
         
         UIButton *archiveButton = [UIButton buttonWithType:UIButtonTypeCustom];
         //[archiveButton setTitle:@"Del" forState:UIControlStateNormal];
-        [archiveButton setImage:[UIImage imageNamed:@"ItemActions_Archive"] forState:UIControlStateNormal];
         [archiveButton setFrame:CGRectMake(edgewith+betweenwidth, 5, 30, 30)];
-        [archiveButton addTarget:self action:@selector(archiveItem) forControlEvents:UIControlEventTouchUpInside];
         if ([AppHelper sharedInstance].sinfo.bArchived) {
             [archiveButton setImage:[UIImage imageNamed:@"ItemActions_ReAdd"] forState:UIControlStateNormal];
             [archiveButton addTarget:self action:@selector(unarchiveItem) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else{
+            [archiveButton setImage:[UIImage imageNamed:@"ItemActions_Archive"] forState:UIControlStateNormal];
+            [archiveButton addTarget:self action:@selector(archiveItem) forControlEvents:UIControlEventTouchUpInside];
         }
         
         [bottomToolBar addSubview:archiveButton];
         
         UIButton *favButton = [UIButton buttonWithType:UIButtonTypeCustom];
         //[favButton setTitle:@"Del" forState:UIControlStateNormal];
-        [favButton setImage:[UIImage imageNamed:@"ItemActions_Favorite"] forState:UIControlStateNormal];
         [favButton setFrame:CGRectMake(edgewith+betweenwidth*2, 5, 30, 30)];
-        [favButton addTarget:self action:@selector(favItem) forControlEvents:UIControlEventTouchUpInside];
         if ([AppHelper sharedInstance].sinfo.bFavorite)
         {
-            [favButton setImage:[UIImage imageNamed:@"ItemActions_Favorite_Yellow"] forState:UIControlStateNormal];
+            [favButton setImage:[UIImage imageNamed:@"favactive"] forState:UIControlStateNormal];
+            [favButton addTarget:self action:@selector(favItem) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else{
+            [favButton setImage:[UIImage imageNamed:@"ItemActions_Favorite"] forState:UIControlStateNormal];
             [favButton addTarget:self action:@selector(favItem) forControlEvents:UIControlEventTouchUpInside];
         }
         self.favBtn = favButton;
@@ -348,6 +440,8 @@
 
 - (void)archiveItem
 {
+//    [MBProgressHUD showSuccess:@"Archieved"];
+    [SVProgressHUD showSuccessWithStatus:@"Archived"];
     [[AppHelper sharedInstance] archiveCurrentShoe];
     [self.delegate reloadData:self];
     [self goback:nil];
@@ -355,6 +449,7 @@
 
 - (void)unarchiveItem
 {
+    [SVProgressHUD showSuccessWithStatus:@"UnArchived"];
     [[AppHelper sharedInstance] unarchiveCurrentShoe];
     [self.delegate reloadData:self];
     [self goback:nil];
@@ -369,8 +464,8 @@
     }
     else
     {
-        [self.favNavBtn setImage:[UIImage imageNamed:@"ItemActions_Favorite_Yellow"]];
-        [self.favBtn setImage:[UIImage imageNamed:@"ItemActions_Favorite_Yellow"] forState:UIControlStateNormal];
+        [self.favNavBtn setImage:[UIImage imageNamed:@"favactive"]];
+        [self.favBtn setImage:[UIImage imageNamed:@"favactive"] forState:UIControlStateNormal];
         [[AppHelper sharedInstance] favoriteCurrentShoe];
     }
     
@@ -833,9 +928,13 @@
     return  [AppHelper sharedInstance].shoenotes.count;
 }
 
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    
+//}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0;
+    return 50.0;
 }
 
 //每行风格和内容
@@ -847,7 +946,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont fontWithName:@"Avenir Next Condensed" size:14];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir Next Condensed" size:14];
-        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     

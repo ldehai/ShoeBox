@@ -641,7 +641,7 @@ static AppHelper *instance = nil;
     [database executeQuery:sqlQuery];
     [database close];
     
-    [self.shoes removeObject:info];
+//    [self.shoes removeObject:info];
 }
 
 - (void)archiveCurrentShoe
@@ -656,7 +656,7 @@ static AppHelper *instance = nil;
     [database executeQuery:sqlQuery];
     [database close];
     
-    [self.shoes removeObject:info];
+//    [self.shoes removeObject:info];
 }
 - (void)unarchiveShoeWithTag:(int)tag
 {
@@ -670,7 +670,7 @@ static AppHelper *instance = nil;
     [database executeQuery:sqlQuery];
     [database close];
     
-    [self.shoes removeObject:info];
+//    [self.shoes removeObject:info];
 }
 
 - (void)unarchiveCurrentShoe
@@ -685,7 +685,7 @@ static AppHelper *instance = nil;
     [database executeQuery:sqlQuery];
     [database close];
     
-    [self.shoes removeObject:info];
+//    [self.shoes removeObject:info];
 }
 
 - (void)favoriteShoeWithTag:(int)tag

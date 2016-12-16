@@ -128,7 +128,7 @@
         }
     }
     else{
-        [self performSelector:@selector(resizeImages) withObject:nil afterDelay:1.0]
+        [self performSelector:@selector(loadShoe) withObject:nil afterDelay:1.0]
         ;
     }
     
@@ -242,6 +242,8 @@
     }
     
     [self.gridView reloadData];
+    
+    [IssueViewController clearSelectCount];
 
 }
 - (void)loadPopMenu
@@ -467,7 +469,7 @@
 - (void)showArchived
 {
     self.title = @"Archived";
-    currentFilter = @"Favorite";
+    currentFilter = @"archived";
 
     [[AppHelper sharedInstance] loadshoeWithFilter:@"archived"];
     
@@ -579,14 +581,14 @@
         [self.bottomToolBar addSubview:img];
         
         UIButton *archiveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        //[archiveButton setTitle:@"Del" forState:UIControlStateNormal];
-        [archiveButton setImage:[UIImage imageNamed:@"ItemActions_Archive"] forState:UIControlStateNormal];
         [archiveButton setFrame:CGRectMake(edgewith, 5, 30, 30)];
-        [archiveButton addTarget:self action:@selector(archiveItems) forControlEvents:UIControlEventTouchUpInside];
         if (sInfo.bArchived) {
             [archiveButton setImage:[UIImage imageNamed:@"ItemActions_ReAdd"] forState:UIControlStateNormal];
-            [archiveButton setFrame:CGRectMake(edgewith, 5, 30, 30)];
             [archiveButton addTarget:self action:@selector(unarchiveItems) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else{
+            [archiveButton setImage:[UIImage imageNamed:@"ItemActions_Archive"] forState:UIControlStateNormal];
+            [archiveButton addTarget:self action:@selector(archiveItems) forControlEvents:UIControlEventTouchUpInside];
         }
 
         [self.bottomToolBar addSubview:archiveButton];
@@ -620,39 +622,41 @@
 
 - (void)archiveItems
 {
-    [self.gridView beginUpdates];
+//    [self.gridView beginUpdates];
     for (int i = 0; i< self.issuesArray.count; i++) {
         IssueViewController *issue = [self.issuesArray objectAtIndex:i];
         if (issue.bSelected) {
             [[AppHelper sharedInstance] archiveShoeWithTag:i];
-            NSIndexSet* set = [NSIndexSet indexSetWithIndex:i];
-            [self.gridView deleteItemsAtIndices:set withAnimation:AQGridViewItemAnimationFade];
+//            NSIndexSet* set = [NSIndexSet indexSetWithIndex:i];
+//            [self.gridView deleteItemsAtIndices:set withAnimation:AQGridViewItemAnimationFade];
             
-            [self.issuesArray removeObject:issue];
-            i--;
+//            [self.issuesArray removeObject:issue];
+//            i--;
         }
     }
     
-    [self.gridView endUpdates];
+//    [self.gridView endUpdates];
+    [self reloadData:nil];
     [self cancelAction:nil];
 }
 
 - (void)unarchiveItems
 {
-    [self.gridView beginUpdates];
+//    [self.gridView beginUpdates];
     for (int i = 0; i< self.issuesArray.count; i++) {
         IssueViewController *issue = [self.issuesArray objectAtIndex:i];
         if (issue.bSelected) {
             [[AppHelper sharedInstance] unarchiveShoeWithTag:i];
-            NSIndexSet* set = [NSIndexSet indexSetWithIndex:i];
-            [self.gridView deleteItemsAtIndices:set withAnimation:AQGridViewItemAnimationFade];
+//            NSIndexSet* set = [NSIndexSet indexSetWithIndex:i];
+//            [self.gridView deleteItemsAtIndices:set withAnimation:AQGridViewItemAnimationFade];
             
-            [self.issuesArray removeObject:issue];
-            i--;
+//            [self.issuesArray removeObject:issue];
+//            i--;
         }
     }
-    
-    [self.gridView endUpdates];
+    [self reloadData:nil];
+//    [self.gridView reloadData];
+//    [self.gridView endUpdates];
     [self cancelAction:nil];
 }
 - (void)favItems
@@ -760,9 +764,9 @@
     }
 }
 
-- (void)resizeImages
+- (void)loadShoe
 {
-    [[AppHelper sharedInstance] resizeImages];
+//    [[AppHelper sharedInstance] resizeImages];
     [[AppHelper sharedInstance] loadshoes:FALSE];
     
     if (!self.issuesArray) {
@@ -906,17 +910,17 @@
 
 - (void)finish
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self.gridView reloadData];
+    
+    self.containView.view.alpha = 0.0;
     [self.containView dismissViewControllerAnimated:NO completion:nil];
     self.containView = nil;
-
-    [self.gridView reloadData];
 }
 
 - (IBAction)cancelAction:(id)sender
 {
     bEditMode = FALSE;
-    self.title = @"FAVO";
+//    self.title = @"FAVO";
     //[self.add setHidden:NO];
     self.bottomToolBar.hidden = YES;
     [self addNavigateButtons];
@@ -924,8 +928,33 @@
     [IssueViewController setStatus:0];
     [[NSNotificationCenter defaultCenter] postNotificationName:ExitEditModeNotify object:self];
     
-    self.title = @"FAVO";
+//    self.title = @"FAVO";
+    [self setTitleByFilter];
+    
+    [IssueViewController clearSelectCount];
 }
+
+- (void)setTitleByFilter{
+    NSString *title = @"";
+    if ([currentFilter isEqualToString:@"all"]) {
+        title = @"FAVO";
+    }
+    else if ([currentFilter isEqualToString:@"archived"])
+    {
+        title = @"Archived";
+    }
+    else if ([currentFilter isEqualToString:@"favorite"])
+    {
+        title = @"Favorite";
+    }
+    else if (![currentFilter isEqualToString:@""])
+    {
+        title = @"FAVO";
+    }
+    
+    [self setTitle:title];
+}
+
 //删除完毕，恢复正常状态
 - (IBAction)commitEdit:(id)sender
 {

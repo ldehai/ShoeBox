@@ -34,6 +34,7 @@
     // Do any additional setup after loading the view from its nib.
     tagList = [[AppHelper sharedInstance] loadTags];
     self.title = @"Add Tag";
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.0 alpha:0.9];
 
     if (self.bOnlyShow) {
         UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close)];
@@ -61,18 +62,18 @@
 
     }
 
-    self.tagTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStylePlain];
-    self.tagTable.delegate = self;
-    self.tagTable.dataSource = self;
-    self.tagTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    if (!self.bOnlyShow)
-    {
-        [self.tagTable setEditing:YES animated:NO];
-        self.tagTable.allowsMultipleSelectionDuringEditing = YES;
-    }
-    
-    [self.view addSubview:self.tagTable];
-    
+//    self.tagTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStyleGrouped];
+//    self.tagTable.delegate = self;
+//    self.tagTable.dataSource = self;
+//    self.tagTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    [self.view addSubview:self.tagTable];
+//    if (!self.bOnlyShow)
+//    {
+//        
+//        self.tagTable.allowsMultipleSelectionDuringEditing = YES;
+//        [self.tagTable setEditing:YES animated:NO];
+//    }
+    [self.tagTable setEditing:YES animated:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(AddTagSuccess:)
 												 name:AddTagSuccessNotify
@@ -225,9 +226,10 @@
     static NSString *CellIdentifier = @"CellIdentifier";
     
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:20];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
     cell.textLabel.text = [tagList objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryNone;
+//    cell.detailTextLabel.text = [tagList objectAtIndex:indexPath.row];
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0,44, self.tagTable.frame.size.width, 1)];
     line.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.3];
     [cell.contentView addSubview:line];
