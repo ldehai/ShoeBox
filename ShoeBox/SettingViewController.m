@@ -41,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
    // [self.navigationController.navigationBar setHidden:YES];
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     self.title = @"Settings";
 
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close)];

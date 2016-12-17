@@ -255,7 +255,7 @@
         top = 0;
     }
     
-    int popWidth = 120;
+    int popWidth = 130;
     int btnHeight = 45;
     int popHeight= (btnHeight+1)*5-1;
     
@@ -287,9 +287,13 @@
 //    [popMenu addSubview:storebtn];
 
     UIButton *allbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [allbtn setTitle:@"My Shoe " forState:UIControlStateNormal];
+    [allbtn setTitle:@"All" forState:UIControlStateNormal];
     allbtn.titleLabel.font = font;
     [allbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [allbtn setTitleEdgeInsets:UIEdgeInsetsMake(2, 40, 0, 0)];
+    [allbtn setImageEdgeInsets:UIEdgeInsetsMake(0, 27, 0, 0)];
+    allbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [allbtn setImage:[UIImage imageNamed:@"set_all"] forState:UIControlStateNormal];
     allbtn.backgroundColor = [UIColor clearColor];
     [allbtn setFrame:CGRectMake(0, 0, popWidth, btnHeight)];
     [allbtn addTarget:self action:@selector(showAll) forControlEvents:UIControlEventTouchUpInside];
@@ -304,7 +308,7 @@
     favbtn.titleLabel.font = font;
     [favbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [favbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
-    [favbtn setImage:[UIImage imageNamed:@"LeftSideMenu_Favorite"] forState:UIControlStateNormal];
+    [favbtn setImage:[UIImage imageNamed:@"set_favorite"] forState:UIControlStateNormal];
     favbtn.backgroundColor = [UIColor clearColor];
     [favbtn setFrame:CGRectMake(0, btnHeight+1, popWidth, btnHeight)];
     [favbtn addTarget:self action:@selector(showFavorite) forControlEvents:UIControlEventTouchUpInside];
@@ -319,7 +323,7 @@
     archivebtn.titleLabel.font = font;
     [archivebtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [archivebtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
-    [archivebtn setImage:[UIImage imageNamed:@"LeftSideMenu_Archive"] forState:UIControlStateNormal];
+    [archivebtn setImage:[UIImage imageNamed:@"set_archive"] forState:UIControlStateNormal];
     archivebtn.backgroundColor = [UIColor clearColor];
     [archivebtn setFrame:CGRectMake(0, (btnHeight+1)*2, popWidth, btnHeight)];
     [archivebtn addTarget:self action:@selector(showArchived) forControlEvents:UIControlEventTouchUpInside];
@@ -334,7 +338,7 @@
     tagbtn.titleLabel.font = font;
     [tagbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [tagbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
-    [tagbtn setImage:[UIImage imageNamed:@"LeftSideMenu_Tag"] forState:UIControlStateNormal];
+    [tagbtn setImage:[UIImage imageNamed:@"set_tag"] forState:UIControlStateNormal];
     [tagbtn setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     tagbtn.backgroundColor = [UIColor clearColor];
     [tagbtn setFrame:CGRectMake(0, (btnHeight+1)*3, popWidth, btnHeight)];
@@ -354,7 +358,7 @@
     setbtn.titleLabel.font = font;
     [setbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [setbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
-    [setbtn setImage:[UIImage imageNamed:@"LeftSideMenu_Settings"] forState:UIControlStateNormal];
+    [setbtn setImage:[UIImage imageNamed:@"set"] forState:UIControlStateNormal];
     [setbtn setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
     setbtn.backgroundColor = [UIColor clearColor];
     [setbtn setFrame:CGRectMake(0, (btnHeight+1)*4, popWidth, btnHeight)];

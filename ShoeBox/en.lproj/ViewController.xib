@@ -219,12 +219,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ubY-75-1gR">
-                    <rect key="frame" x="14" y="13" width="102" height="31"/>
+                    <rect key="frame" x="1" y="6" width="130" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                    <inset key="titleEdgeInsets" minX="-25" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="My Shoes">
+                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                    <state key="normal" title="My Shoes" image="all">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -300,6 +300,7 @@
         <image name="ItemActions_ReAdd@2x.png" width="25" height="25"/>
         <image name="ItemActions_Tag" width="16" height="16"/>
         <image name="ItemActions_Tag.png" width="28" height="22"/>
+        <image name="all" width="41" height="45"/>
         <image name="info.png" width="25" height="25"/>
         <image name="set.png" width="64" height="64"/>
         <image name="shadow" width="16" height="16"/>

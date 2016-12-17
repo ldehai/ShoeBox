@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) id <TagViewControllerDelegate> delegate;
 //@property (strong, nonatomic) UITableView *tagTable;
-@property (weak, nonatomic) IBOutlet UITableView *tagTable;
+@property (strong, nonatomic) UITableView *tagTable;
 @property (assign, nonatomic) BOOL bOnlyShow;
 @property (assign, nonatomic) BOOL showSelectedTags;
 @end

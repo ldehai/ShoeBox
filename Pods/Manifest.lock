@@ -1,0 +1,10 @@
+PODS:
+  - TagListView-ObjC (0.1.1)
+
+DEPENDENCIES:
+  - TagListView-ObjC
+
+SPEC CHECKSUMS:
+  TagListView-ObjC: 432991e24c5177eb4fa7d721de7084f09f39a0b8
+
+COCOAPODS: 0.39.0

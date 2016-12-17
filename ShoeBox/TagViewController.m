@@ -10,11 +10,15 @@
 #import "AppHelper.h"
 #import "UIButton+Custom.h"
 #import "UpgradeViewController.h"
+#import "TagListView.h"
+#import "TagView.h"
+
 
 @interface TagViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     NSMutableArray *tagList;
 }
+@property (weak, nonatomic) IBOutlet TagListView *tagListView;
 @end
 
 @implementation TagViewController
@@ -62,18 +66,17 @@
 
     }
 
-//    self.tagTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStyleGrouped];
-//    self.tagTable.delegate = self;
-//    self.tagTable.dataSource = self;
-//    self.tagTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.view addSubview:self.tagTable];
-//    if (!self.bOnlyShow)
-//    {
-//        
-//        self.tagTable.allowsMultipleSelectionDuringEditing = YES;
-//        [self.tagTable setEditing:YES animated:NO];
-//    }
-    [self.tagTable setEditing:YES animated:NO];
+    self.tagTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStyleGrouped];
+    self.tagTable.delegate = self;
+    self.tagTable.dataSource = self;
+    self.tagTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tagTable];
+    if (!self.bOnlyShow)
+    {
+        self.tagTable.allowsMultipleSelectionDuringEditing = YES;
+        [self.tagTable setEditing:YES animated:NO];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(AddTagSuccess:)
 												 name:AddTagSuccessNotify
