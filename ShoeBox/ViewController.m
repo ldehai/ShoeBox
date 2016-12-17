@@ -21,6 +21,7 @@
 #import "TagViewController.h"
 #import "WebViewController.h"
 #import "UpgradeViewController.h"
+#import "UIColor+Categories.h"
 
 @interface ViewController ()
 {
@@ -494,7 +495,7 @@
 {
     TagViewController *tagView = [[TagViewController alloc] initWithNibName:nil bundle:nil];
     tagView.delegate = self;
-    tagView.bOnlyShow = TRUE;
+//    tagView.bOnlyShow = TRUE;
 
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:tagView];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

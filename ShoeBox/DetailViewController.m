@@ -483,6 +483,7 @@
 {
     TagViewController *tagView = [[TagViewController alloc] initWithNibName:nil bundle:nil];
     tagView.delegate = self;
+    tagView.bOnlyShow = YES;
     tagView.showSelectedTags = YES;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:tagView];

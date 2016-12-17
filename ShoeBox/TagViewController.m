@@ -40,7 +40,7 @@
     self.title = @"Add Tag";
     self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.0 alpha:0.9];
 
-    if (self.bOnlyShow) {
+    if (!self.bOnlyShow) {
         UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close)];
         
         [closeButton setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -66,12 +66,12 @@
 
     }
 
-    self.tagTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStyleGrouped];
+    self.tagTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStylePlain];
     self.tagTable.delegate = self;
     self.tagTable.dataSource = self;
     self.tagTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tagTable];
-    if (!self.bOnlyShow)
+    if (self.bOnlyShow)
     {
         self.tagTable.allowsMultipleSelectionDuringEditing = YES;
         [self.tagTable setEditing:YES animated:NO];
@@ -82,6 +82,10 @@
 												 name:AddTagSuccessNotify
 											   object:nil];
     
+    [self checkSelectTag];
+}
+
+- (void)checkSelectTag{
     //select current tag
     if (self.showSelectedTags) {
         NSString *tags = [AppHelper sharedInstance].sinfo.tags;
@@ -103,7 +107,6 @@
             
         }];
     }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -156,11 +159,11 @@
 
 - (void)newtag
 {
-    if(tagList.count < 3 || [[AppHelper sharedInstance] readPurchaseInfo])
+    if(tagList.count < 6 || [[AppHelper sharedInstance] readPurchaseInfo])
     {
         
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Add Tag"
-                                                       message:@"Type the name of new tag"
+                                                       message:@"Type tag name"
                                                       delegate:self
                                              cancelButtonTitle:@"Cancel"
                                              otherButtonTitles:@"Add", nil];
@@ -195,6 +198,8 @@
     [tagList insertObject:newtag atIndex:0];
     
     [self.tagTable reloadData];
+    
+    [self checkSelectTag];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -228,11 +233,9 @@
     UITableViewCell *cell = nil;
     static NSString *CellIdentifier = @"CellIdentifier";
     
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
     cell.textLabel.text = [tagList objectAtIndex:indexPath.row];
-//    cell.detailTextLabel.text = [tagList objectAtIndex:indexPath.row];
-//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0,44, self.tagTable.frame.size.width, 1)];
     line.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.3];
     [cell.contentView addSubview:line];
@@ -240,23 +243,31 @@
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.bOnlyShow)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
+//- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (self.bOnlyShow)
+//    {
+//        return YES;
+//    }
+//    
+//    return NO;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.bOnlyShow) {
+    if (!self.bOnlyShow) {
         [self.delegate filterByTag:[tagList objectAtIndex:indexPath.row]];
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if (self.bOnlyShow)
+        return 3;
+    else
+        return UITableViewCellEditingStyleDelete;
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
