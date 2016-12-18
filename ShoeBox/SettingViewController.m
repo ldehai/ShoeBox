@@ -72,9 +72,7 @@
                       @"https://itunes.apple.com/us/app/mapcost/id689270210?ls=1&mt=8",nil],
                      
                      [NSArray arrayWithObjects:@"TripCost",@"tripcost.png",@"Split bills with friends",
-                      @"https://itunes.apple.com/us/app/tripcost-split-bills-friends/id633501469?ls=1&mt=8",nil],
-                     [NSArray arrayWithObjects:@"E.Timer",@"etimer.png",@"Excellent CountDown Timer",
-                      @"https://itunes.apple.com/us/app/e.timer/id660765636?ls=1&mt=8",nil],nil];
+                      @"https://itunes.apple.com/us/app/tripcost-split-bills-friends/id633501469?ls=1&mt=8",nil],nil];
 }
 
 - (void)close

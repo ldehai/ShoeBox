@@ -159,7 +159,7 @@
 
 - (void)newtag
 {
-    if(tagList.count < 6 || [[AppHelper sharedInstance] readPurchaseInfo])
+    if(tagList.count < 4 || [[AppHelper sharedInstance] readPurchaseInfo])
     {
         
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Add Tag"

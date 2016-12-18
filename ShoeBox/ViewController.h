@@ -50,6 +50,7 @@
 @property (strong, nonatomic) IBOutlet UIButton* setting;
 @property (strong, nonatomic) IBOutlet UIButton *tag;
 @property (strong, nonatomic) IBOutlet UILabel *titleName;
+@property (weak, nonatomic) IBOutlet UIView *emptyView;
 @property (strong, nonatomic) UIView *bottomToolBar;
 @property (strong, nonatomic) UIWebView *webStoreBanner;
 - (IBAction)myfavorite:(id)sender;

@@ -13,8 +13,6 @@
 #import "SettingViewController.h"
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
-//#import "TableViewCell.h"
-//#import <Dropbox/Dropbox.h>
 #import "LeftViewController.h"
 #import "AQGridView.h"
 #import "IssueViewController.h"
@@ -64,8 +62,8 @@
     [super viewDidLoad];
     [self setTitle:@"FAVO"];
 
+    currentFilter = @"";
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    self.view.backgroundColor = [UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0];
     
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self addNavigateButtons];
@@ -82,7 +80,6 @@
     self.gridView = [[AQGridView alloc] init];
     self.gridView.dataSource = self;
     self.gridView.delegate = self;
-    self.gridView.backgroundColor = [UIColor clearColor];
     [self.gridView setFrame:CGRectMake(0, 10, size.width, size.height-top-10)];
     self.gridView.showsVerticalScrollIndicator = NO;
     //self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -217,6 +214,8 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.navigationController.navigationBar setHidden:NO];
     
+    [self setEmptyView];
+
 /*    [[AppHelper sharedInstance] loadshoes:FALSE];
     if (!self.issuesArray) {
         self.issuesArray = [[NSMutableArray alloc]init];
@@ -245,8 +244,37 @@
     [self.gridView reloadData];
     
     [IssueViewController clearSelectCount];
-
+    
+    [self setEmptyView];
 }
+
+- (void)setEmptyView{
+    if ([AppHelper sharedInstance].shoes.count == 0) {
+        if (![self.emptyView superview]) {
+            [self.view addSubview:self.emptyView];
+            self.emptyView.center = self.view.center;
+        }
+        [self.view bringSubviewToFront:self.emptyView];
+        self.emptyView.alpha = 0.0;
+        [self.emptyView setHidden:NO];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.emptyView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            //
+        }];
+    }
+    else{
+//        [self.view sendSubviewToBack:self.emptyView];
+        self.emptyView.alpha = 1.0;
+        [self.emptyView setHidden:YES];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.emptyView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            //
+        }];
+    }
+}
+
 - (void)loadPopMenu
 {
     int statusheight = self.navigationController.navigationBar.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height;
@@ -449,6 +477,8 @@
     [self.gridView reloadData];
     
     [self openMenu:nil];
+    
+    [self setEmptyView];
 }
 
 - (void)showFavorite
@@ -469,6 +499,7 @@
     
     [self.gridView reloadData];
     [self openMenu:nil];
+    [self setEmptyView];
 }
 
 - (void)showArchived
@@ -489,6 +520,7 @@
     
     [self.gridView reloadData];
     [self openMenu:nil];
+    [self setEmptyView];
 }
 
 - (void)showTag
@@ -505,6 +537,7 @@
     
     [self presentViewController:nav animated:YES completion:nil];
     [self openMenu:nil];
+    [self setEmptyView];
 }
 
 - (void)filterByTag:(NSString *)tag
@@ -525,6 +558,7 @@
     }
     
     [self.gridView reloadData];
+    [self setEmptyView];
 }
 
 - (void)enterEditMode
@@ -682,6 +716,7 @@
 {
     TagViewController *tagView = [[TagViewController alloc] initWithNibName:nil bundle:nil];
     tagView.delegate = self;
+    tagView.bOnlyShow = YES;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:tagView];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -785,11 +820,13 @@
     
     [self.gridView reloadData];
     [SVProgressHUD dismiss];
+    
+    [self setEmptyView];
 }
 
 - (void)addNewShoes
 {
-    if([AppHelper sharedInstance].shoes.count < 12 || [[AppHelper sharedInstance] readPurchaseInfo])
+    if([AppHelper sharedInstance].shoes.count < 10 || [[AppHelper sharedInstance] readPurchaseInfo])
     {
 
         CGRect rect = [[UIScreen mainScreen] bounds];
@@ -868,6 +905,7 @@
     ShoeInfo *sinfo = [[AppHelper sharedInstance].shoes objectAtIndex:0];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AppAddShoeSuccess" object:sinfo.name]; // -> Analytics Event
 
+    [self setEmptyView];
 }
 
 - (void)openShoe
@@ -920,27 +958,29 @@
     self.containView.view.alpha = 0.0;
     [self.containView dismissViewControllerAnimated:NO completion:nil];
     self.containView = nil;
+    
+    [self setEmptyView];
 }
 
 - (IBAction)cancelAction:(id)sender
 {
     bEditMode = FALSE;
-//    self.title = @"FAVO";
-    //[self.add setHidden:NO];
+
     self.bottomToolBar.hidden = YES;
     [self addNavigateButtons];
     
     [IssueViewController setStatus:0];
     [[NSNotificationCenter defaultCenter] postNotificationName:ExitEditModeNotify object:self];
     
-//    self.title = @"FAVO";
     [self setTitleByFilter];
     
     [IssueViewController clearSelectCount];
+    
+    [self setEmptyView];
 }
 
 - (void)setTitleByFilter{
-    NSString *title = @"";
+    NSString *title = @"FAVO";
     if ([currentFilter isEqualToString:@"all"]) {
         title = @"FAVO";
     }
@@ -952,7 +992,7 @@
     {
         title = @"Favorite";
     }
-    else if (![currentFilter isEqualToString:@""])
+    else if ([currentFilter isEqualToString:@""])
     {
         title = @"FAVO";
     }
@@ -968,6 +1008,8 @@
     [self.topToolBar setHidden:NO];
     //[self.add setHidden:NO];
     [self.gridView reloadData];
+    
+    [self setEmptyView];
 }
 
 - (IBAction)addShoe:(id)sender {
@@ -1048,58 +1090,58 @@
 #pragma mark -
 #pragma mark iAds Methods
 
-- (void)layoutAnimated:(BOOL)animated
-{
-    // As of iOS 6.0, the banner will automatically resize itself based on its width.
-    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
-    CGRect contentFrame = self.view.bounds;
-    _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        bannerFrame.origin.y = contentFrame.size.height-bannerFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
-        _bannerView.frame = bannerFrame;
-    }];
-    
-   // [self.view bringSubviewToFront:self.add];
-}
+//- (void)layoutAnimated:(BOOL)animated
+//{
+//    // As of iOS 6.0, the banner will automatically resize itself based on its width.
+//    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
+//    CGRect contentFrame = self.view.bounds;
+//    _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+//    
+//    CGRect bannerFrame = _bannerView.frame;
+//    if (_bannerView.bannerLoaded) {
+//        bannerFrame.origin.y = contentFrame.size.height-bannerFrame.size.height;
+//    } else {
+//        bannerFrame.origin.y = contentFrame.size.height;
+//    }
+//    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+//        _bannerView.frame = bannerFrame;
+//    }];
+//    
+//   // [self.view bringSubviewToFront:self.add];
+//}
+//
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    [self becomeFirstResponder];
+//    
+//    [self layoutAnimated:NO];
+//}
+//
+//- (void)viewDidLayoutSubviews
+//{
+//    [self layoutAnimated:[UIView areAnimationsEnabled]];
+//}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self becomeFirstResponder];
-    
-    [self layoutAnimated:NO];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [self layoutAnimated:[UIView areAnimationsEnabled]];
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [self layoutAnimated:YES];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    [self layoutAnimated:YES];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
-{
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner
-{
-    
-}
+//- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+//{
+//    [self layoutAnimated:YES];
+//}
+//
+//- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+//{
+//    [self layoutAnimated:YES];
+//}
+//
+//- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+//{
+//    return YES;
+//}
+//
+//- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+//{
+//    
+//}
 
 
 @end

@@ -202,7 +202,7 @@ static int curStatus = 0;
     titleLabel.font = tagFont;
     titleLabel.textColor = [UIColor blackColor];
     [titleLabel setText:shoeInfo.name];
-    [self.view addSubview:titleLabel];
+//    [self.view addSubview:titleLabel];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                                initWithTarget:self

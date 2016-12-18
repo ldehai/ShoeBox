@@ -68,14 +68,8 @@
 		A151664E17A01CA300DD8097 /* btnbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A151664D17A01CA300DD8097 /* btnbg@2x.png */; };
 		A151665117A02DE500DD8097 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A151664F17A02DE500DD8097 /* background.png */; };
 		A151665217A02DE500DD8097 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A151665017A02DE500DD8097 /* background@2x.png */; };
-		A157B1CB199B999F00152A6E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A157B1C5199B999F00152A6E /* libTestFlight.a */; };
 		A157B1CC199B999F00152A6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A157B1C6199B999F00152A6E /* README.md */; };
 		A157B1CD199B999F00152A6E /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = A157B1C7199B999F00152A6E /* release_notes.md */; };
-		A157B1D2199B99EA00152A6E /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A157B1CF199B99EA00152A6E /* Pinterest.framework */; };
-		A157B1D3199B99EA00152A6E /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A157B1D1199B99EA00152A6E /* PinterestSDKResources.bundle */; };
-		A157B1E0199B9B6D00152A6E /* Changelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = A157B1D7199B9B6D00152A6E /* Changelog.txt */; };
-		A157B1E1199B9B6D00152A6E /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A157B1DE199B9B6D00152A6E /* libGoogleAnalyticsServices.a */; };
-		A157B1E2199B9B6D00152A6E /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = A157B1DF199B9B6D00152A6E /* Readme.txt */; };
 		A15B97D417E5EA8600C64E9E /* mapcost.png in Resources */ = {isa = PBXBuildFile; fileRef = A15B97D317E5EA8600C64E9E /* mapcost.png */; };
 		A16966CE179CE61200C6DEE6 /* IMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16966CD179CE61100C6DEE6 /* IMPopoverController.m */; };
 		A16966D0179D06BA00C6DEE6 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = A16966CF179D06BA00C6DEE6 /* tag.png */; };
@@ -217,7 +211,6 @@
 		A1803C5B187BB7F000147B97 /* LeftSideMenu_Tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1803C4D187BB7F000147B97 /* LeftSideMenu_Tag@2x.png */; };
 		A1803C5F187BD2DE00147B97 /* favorite-star.png in Resources */ = {isa = PBXBuildFile; fileRef = A1803C5D187BD2DE00147B97 /* favorite-star.png */; };
 		A1803C60187BD2DE00147B97 /* favorite-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1803C5E187BD2DE00147B97 /* favorite-star@2x.png */; };
-		A1803C62187BD70900147B97 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1803C61187BD70900147B97 /* iAd.framework */; };
 		A1803C64187C280B00147B97 /* upgrade@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1803C63187C280B00147B97 /* upgrade@2x.png */; };
 		A1803C6B187E677A00147B97 /* toolbar_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A1803C69187E677A00147B97 /* toolbar_back.png */; };
 		A1803C6C187E677A00147B97 /* toolbar_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1803C6A187E677A00147B97 /* toolbar_back@2x.png */; };
@@ -370,7 +363,6 @@
 		A123CF5E1772EF4B00290BDF /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
 		A123CF5F1772EF4B00290BDF /* ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
 		A123CF601772EF4B00290BDF /* ThemeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeViewController.xib; sourceTree = "<group>"; };
-		A12D47611842441200209E75 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = ShoeBox/Dropbox.framework; sourceTree = "<group>"; };
 		A12D47631842448000209E75 /* buttonbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonbg.png; sourceTree = "<group>"; };
 		A12D4767184303B000209E75 /* GMGridView-Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMGridView-Constants.h"; sourceTree = "<group>"; };
 		A12D4768184303B000209E75 /* GMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridView.h; sourceTree = "<group>"; };
@@ -390,6 +382,17 @@
 		A12D478018430EDB00209E75 /* LeftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftViewController.xib; sourceTree = "<group>"; };
 		A12D478318431F4900209E75 /* toolbar_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_list.png; sourceTree = "<group>"; };
 		A12D478418431F4900209E75 /* toolbar_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_list@2x.png"; sourceTree = "<group>"; };
+		A135133B1E063214000A5F72 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		A135133C1E063214000A5F72 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		A135133D1E063214000A5F72 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		A135133E1E063214000A5F72 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		A135133F1E063214000A5F72 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		A13513401E063214000A5F72 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		A13513411E063214000A5F72 /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		A13513421E063214000A5F72 /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		A13513431E063214000A5F72 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		A13513441E063214000A5F72 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		A13513451E063214000A5F72 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		A1516643179FF7AB00DD8097 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		A1516644179FF7AB00DD8097 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		A1516647179FFCF500DD8097 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -404,17 +407,6 @@
 		A157B1C8199B999F00152A6E /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		A157B1C9199B999F00152A6E /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		A157B1CA199B999F00152A6E /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		A157B1CF199B99EA00152A6E /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
-		A157B1D1199B99EA00152A6E /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
-		A157B1D7199B9B6D00152A6E /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
-		A157B1D8199B9B6D00152A6E /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		A157B1D9199B9B6D00152A6E /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		A157B1DA199B9B6D00152A6E /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		A157B1DB199B9B6D00152A6E /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		A157B1DC199B9B6D00152A6E /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		A157B1DD199B9B6D00152A6E /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		A157B1DE199B9B6D00152A6E /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
-		A157B1DF199B9B6D00152A6E /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		A15B97D317E5EA8600C64E9E /* mapcost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapcost.png; sourceTree = "<group>"; };
 		A16966CC179CE61100C6DEE6 /* IMPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPopoverController.h; sourceTree = "<group>"; };
 		A16966CD179CE61100C6DEE6 /* IMPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMPopoverController.m; sourceTree = "<group>"; };
@@ -577,7 +569,6 @@
 		A1803C4D187BB7F000147B97 /* LeftSideMenu_Tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LeftSideMenu_Tag@2x.png"; sourceTree = "<group>"; };
 		A1803C5D187BD2DE00147B97 /* favorite-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite-star.png"; sourceTree = "<group>"; };
 		A1803C5E187BD2DE00147B97 /* favorite-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite-star@2x.png"; sourceTree = "<group>"; };
-		A1803C61187BD70900147B97 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		A1803C63187C280B00147B97 /* upgrade@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upgrade@2x.png"; sourceTree = "<group>"; };
 		A1803C69187E677A00147B97 /* toolbar_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_back.png; sourceTree = "<group>"; };
 		A1803C6A187E677A00147B97 /* toolbar_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_back@2x.png"; sourceTree = "<group>"; };
@@ -667,10 +658,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1803C62187BD70900147B97 /* iAd.framework in Frameworks */,
 				A1E5A70918600A07002D56D3 /* CoreData.framework in Frameworks */,
 				A1EA3142180ED6E3001669DD /* libc++.dylib in Frameworks */,
-				A157B1E1199B9B6D00152A6E /* libGoogleAnalyticsServices.a in Frameworks */,
 				A1EA3140180ED6B2001669DD /* Security.framework in Frameworks */,
 				A1EA313E180ED69F001669DD /* CFNetwork.framework in Frameworks */,
 				A19AC8F61773EB1F008E182B /* libz.dylib in Frameworks */,
@@ -679,9 +668,7 @@
 				A171305B1771449200DCE14F /* QuartzCore.framework in Frameworks */,
 				A17130421770C54200DCE14F /* SystemConfiguration.framework in Frameworks */,
 				A17130391770C4C800DCE14F /* StoreKit.framework in Frameworks */,
-				A157B1CB199B999F00152A6E /* libTestFlight.a in Frameworks */,
 				A17130341770C2BA00DCE14F /* libsqlite3.dylib in Frameworks */,
-				A157B1D2199B99EA00152A6E /* Pinterest.framework in Frameworks */,
 				A1712E7F1770B62800DCE14F /* UIKit.framework in Frameworks */,
 				A1712E811770B62800DCE14F /* Foundation.framework in Frameworks */,
 				A1712E831770B62800DCE14F /* CoreGraphics.framework in Frameworks */,
@@ -835,36 +822,20 @@
 			path = TestFlight;
 			sourceTree = "<group>";
 		};
-		A157B1CE199B99EA00152A6E /* Pinterest.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				A157B1CF199B99EA00152A6E /* Pinterest.framework */,
-				A157B1D0199B99EA00152A6E /* Resources */,
-			);
-			name = Pinterest.embeddedframework;
-			path = ThirdPart/Pinterest.embeddedframework;
-			sourceTree = "<group>";
-		};
-		A157B1D0199B99EA00152A6E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A157B1D1199B99EA00152A6E /* PinterestSDKResources.bundle */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		A157B1D6199B9B6D00152A6E /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				A157B1D7199B9B6D00152A6E /* Changelog.txt */,
-				A157B1D8199B9B6D00152A6E /* GAI.h */,
-				A157B1D9199B9B6D00152A6E /* GAIDictionaryBuilder.h */,
-				A157B1DA199B9B6D00152A6E /* GAIFields.h */,
-				A157B1DB199B9B6D00152A6E /* GAILogger.h */,
-				A157B1DC199B9B6D00152A6E /* GAITrackedViewController.h */,
-				A157B1DD199B9B6D00152A6E /* GAITracker.h */,
-				A157B1DE199B9B6D00152A6E /* libGoogleAnalyticsServices.a */,
-				A157B1DF199B9B6D00152A6E /* Readme.txt */,
+				A135133B1E063214000A5F72 /* GAI.h */,
+				A135133C1E063214000A5F72 /* GAIDictionaryBuilder.h */,
+				A135133D1E063214000A5F72 /* GAIEcommerceFields.h */,
+				A135133E1E063214000A5F72 /* GAIEcommerceProduct.h */,
+				A135133F1E063214000A5F72 /* GAIEcommerceProductAction.h */,
+				A13513401E063214000A5F72 /* GAIEcommercePromotion.h */,
+				A13513411E063214000A5F72 /* GAIFields.h */,
+				A13513421E063214000A5F72 /* GAILogger.h */,
+				A13513431E063214000A5F72 /* GAITrackedViewController.h */,
+				A13513441E063214000A5F72 /* GAITracker.h */,
+				A13513451E063214000A5F72 /* libGoogleAnalyticsServices.a */,
 			);
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
@@ -894,10 +865,7 @@
 		A1712E7D1770B62800DCE14F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A157B1CE199B99EA00152A6E /* Pinterest.embeddedframework */,
-				A1803C61187BD70900147B97 /* iAd.framework */,
 				A1E5A70818600A07002D56D3 /* CoreData.framework */,
-				A12D47611842441200209E75 /* Dropbox.framework */,
 				A1EA3141180ED6E3001669DD /* libc++.dylib */,
 				A1EA313F180ED6B2001669DD /* Security.framework */,
 				A1EA313D180ED69F001669DD /* CFNetwork.framework */,
@@ -1392,7 +1360,6 @@
 				A1712F811770BAFA00DCE14F /* sharing-network-facebook-selected.png in Resources */,
 				A1712F821770BAFA00DCE14F /* sharing-network-facebook-selected@2x.png in Resources */,
 				A1712F831770BAFA00DCE14F /* sharing-network-facebook.png in Resources */,
-				A157B1D3199B99EA00152A6E /* PinterestSDKResources.bundle in Resources */,
 				A1712F841770BAFA00DCE14F /* sharing-network-facebook@2x.png in Resources */,
 				A1712F851770BAFA00DCE14F /* sharing-network-foursquare-highlighted.png in Resources */,
 				A1DC2D8D1E0388E1000C9F80 /* Images.xcassets in Resources */,
@@ -1492,7 +1459,6 @@
 				A123CF3D1772D35500290BDF /* timeline-pressed@2x.png in Resources */,
 				A123CF3E1772D35500290BDF /* timeline.png in Resources */,
 				A123CF3F1772D35500290BDF /* timeline@2x.png in Resources */,
-				A157B1E2199B9B6D00152A6E /* Readme.txt in Resources */,
 				A123CF471772D3D300290BDF /* add-pressed.png in Resources */,
 				A123CF481772D3D300290BDF /* add-pressed@2x.png in Resources */,
 				A123CF491772D3D300290BDF /* add.png in Resources */,
@@ -1516,7 +1482,6 @@
 				A1803C78187E883D00147B97 /* fb.png in Resources */,
 				A12D478618431F4900209E75 /* toolbar_list@2x.png in Resources */,
 				A19CAF001883914500D57DD9 /* share-services@2x.png in Resources */,
-				A157B1E0199B9B6D00152A6E /* Changelog.txt in Resources */,
 				A1DD37501802A45800413CC5 /* BuyViewController.xib in Resources */,
 				A1FE11D01797584100B7ED62 /* Default-568h@2x.png in Resources */,
 				A1B2F6F11798DC01000E1A70 /* UpgradeViewController.xib in Resources */,
