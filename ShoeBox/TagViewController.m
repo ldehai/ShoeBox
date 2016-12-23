@@ -10,15 +10,13 @@
 #import "AppHelper.h"
 #import "UIButton+Custom.h"
 #import "UpgradeViewController.h"
-#import "TagListView.h"
-#import "TagView.h"
 
 
 @interface TagViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     NSMutableArray *tagList;
 }
-@property (weak, nonatomic) IBOutlet TagListView *tagListView;
+//@property (weak, nonatomic) IBOutlet TagListView *tagListView;
 @end
 
 @implementation TagViewController

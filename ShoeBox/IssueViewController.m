@@ -389,7 +389,7 @@ static int curStatus = 0;
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return CGSizeMake((screenRect.size.width-60)/ 3 , (screenRect.size.width-60) *1.5/ 3+20);
+        return CGSizeMake((screenRect.size.width-60)/ 3 , (screenRect.size.width-60)/ 3);
     } else {
         //return CGSizeMake((screenRect.size.width - 20)/2, (screenRect.size.width - 20) *1.5/2+60);
         return CGSizeMake((screenRect.size.width - 20)/2, (screenRect.size.width - 20)/2);

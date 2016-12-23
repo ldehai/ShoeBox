@@ -80,6 +80,7 @@
     self.gridView = [[AQGridView alloc] init];
     self.gridView.dataSource = self;
     self.gridView.delegate = self;
+    self.gridView.backgroundColor = [UIColor clearColor];
     [self.gridView setFrame:CGRectMake(0, 10, size.width, size.height-top-10)];
     self.gridView.showsVerticalScrollIndicator = NO;
     //self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;

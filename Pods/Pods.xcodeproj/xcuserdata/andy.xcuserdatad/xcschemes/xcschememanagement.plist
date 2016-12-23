@@ -3,40 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict>
-		<key>Pods.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>TagListView-ObjC-TagListView-ObjC.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>TagListView-ObjC.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-	</dict>
+	<dict/>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>35A3F4C6DDF414C99EA31BE87CDFF161</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>517C3EDBA73886361D8F364AC82008C3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>65FEFAA4D03078A233AED3772CBBB5E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>
